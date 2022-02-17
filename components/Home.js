@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity, ImageBackground, TextInput, Dimensions, TouchableHighlight, Animated, translateY } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, Dimensions, Animated } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -11,7 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { Picker } from 'react-native-woodpicker';
-import notifee, { AndroidImportance, TimestampTrigger, TriggerType, IOSAuthorizationStatus } from '@notifee/react-native';
+import notifee, { TriggerType, IOSAuthorizationStatus } from '@notifee/react-native';
 
 
 
@@ -19,33 +19,32 @@ import notifee, { AndroidImportance, TimestampTrigger, TriggerType, IOSAuthoriza
 export default function Home(props) {
 
 
-
     const navigation = useNavigation();
     const [pn, setPn] = React.useState(props.updata);
     const [store, showstore] = React.useState(-1);
     const [frequency, setfrequency] = React.useState();
-  
+
     const dayfreq = [
-        { label: "Frequency", value: null},
-        { label: "Hourly", value: 'hourly'},
-        { label: "Daily", value: 'daily'},
-        { label: "Weekly", value: 'weekly'}
+        { label: "Frequency", value: null },
+        { label: "Hourly", value: 'HOURLY' },
+        { label: "Daily", value: 'DAILY' },
+        { label: "Weekly", value: 'WEEKLY' }
     ];
 
-// user authorization function for push notifications. happens once
-    const authoriz = async()=>{
+    // user authorization function for push notifications. happens once
+    const authoriz = async () => {
         const settings = await notifee.requestPermission();
         if (settings.authorizationStatus === IOSAuthorizationStatus.DENIED) {
-          console.log('User denied permissions request');
+            console.log('User denied permissions request');
         } else if (settings.authorizationStatus === IOSAuthorizationStatus.AUTHORIZED) {
-           console.log('User granted permissions request');
+            console.log('User granted permissions request');
         } else if (settings.authorizationStatus === IOSAuthorizationStatus.PROVISIONAL) {
-           console.log('User provisionally granted permissions request');
+            console.log('User provisionally granted permissions request');
         }
     }
     authoriz();
 
-// clear function. only for dev
+    // clear function. only for dev
     quickClear = async () => {
         clearAll = async () => {
             try {
@@ -53,7 +52,6 @@ export default function Home(props) {
             } catch (e) {
                 // clear error
             }
-
             console.log('Done clearing.')
         }
         clearAll();
@@ -81,6 +79,8 @@ export default function Home(props) {
         }
         setStringValue();
 
+        onCreateTriggerNotification(index);
+
     }
     // days logging to array
     const logdays = (days, index) => {
@@ -102,6 +102,7 @@ export default function Home(props) {
         }
         setStringValue();
 
+        onCreateTriggerNotification(index);
     }
     // time logging to array
     const logtime = (time, index) => {
@@ -110,7 +111,6 @@ export default function Home(props) {
         let middletime = new Date(time.nativeEvent.timestamp);
         console.log('middle time is type ' + typeof middletime);
         console.log(Date.parse(middletime));
-
         middlevar.time = middletime;
         middlevar.order = index;
         middlepn.splice(index, 1, middlevar);
@@ -127,6 +127,7 @@ export default function Home(props) {
         }
         setStringValue();
 
+        onCreateTriggerNotification(index);
     }
 
 
@@ -139,91 +140,99 @@ export default function Home(props) {
         this.uniqueid = uniqueid;
         this.order = order;
     }
+
+
     // delete a prayer item from state
     const deleteitem = (info) => {
         let uid = pn[info].uniqueid;
         let newlist = [...pn];
         newlist.splice(info, 1);
-
         setPn(newlist);
-
+        // remove from local storage
         removeValue = async () => {
             try {
                 await AsyncStorage.removeItem(uid)
             } catch (e) {
                 console.log(e);
             }
-
             console.log('Done removing ' + info)
         }
         removeValue();
-
+        // remove push notification
+        notifee.cancelNotification(uid);
     }
+
     // add prayer item to state
     const additem = () => {
-
-
-
         if (pn.length > 0) {
-
             setPn([...pn, new PrayerTemplate(null, null, new Date(1598051730000), uuid.v4(), pn[pn.length - 1].order + 1)]);
-
         } else {
-
             setPn([new PrayerTemplate(null, null, new Date(1598051730000), uuid.v4(), 0)]);
-
         }
     }
 
 
-// Notifications functions
+    // Notifications functions
 
 
-const onCreateTriggerNotification = async()=> {
-    const date = new Date(Date.now());
-    // if statement here to determine if time selected is in the future or past. if past, then set date to tomorrow. consumes either time or hour and minutes
-    date.setHours(12);
-    date.setMinutes(2);
+    const onCreateTriggerNotification = async (index) => {
+        const date = new Date(Date.now());
+        let tomorrow = new Date();
+        let prayertime = pn[index].time;
+        const prayerfreq = pn[index].days;
+        prayertime.setSeconds(0);
+        tomorrow.setDate(date.getDate() + 1);
 
-    // Create a time-based trigger
-    const trigger = {
-        type: TriggerType.TIMESTAMP,
-        timestamp: date.getTime(),
-   //   repeatFrequency: RepeatFrequency.WEEKLY     
-      };
+        // if statement here to determine if time selected is in the future or past. if past, then set date to tomorrow. consumes either time or hour and minutes
+        if (prayertime.getTime() <= date.getTime()) {
+            tomorrow.setHours(prayertime.getHours());
+            tomorrow.setMinutes(prayertime.getMinutes());
+            prayertime = tomorrow;
+            console.log('will be pushed tomorrow');
+        } else {
+            console.log('will be pushed later today');
+        }
 
-      try{
-        await notifee.createTriggerNotification(
-            {
-              title: 'Meeting with Jane',
-              body: 'Today at 11:20am',
-              android: {
-                channelId: 'default',
-              },
-            },
-            trigger,
-          );
-          
-      } catch(e) {
-          console.log(e);
-      }
-    
-    
-  }
 
-  
+        // Create a time-based trigger
+        const trigger = {
+            type: TriggerType.TIMESTAMP,
+            timestamp: prayertime.getTime(),
+            repeatFrequency: pn[index].days.value
+        };
 
-  
+        try {
+            if (pn[index].days.value != null) {
+                await notifee.createTriggerNotification(
+                    {
+                        id: pn[index].uniqueid,
+                        title: 'Prayer Notification:',
+                        body: pn[index].prayertext,
+                        android: {
+                            channelId: 'default',
+                        },
+                    },
+                    trigger,
+                );
+            } else {
+                notifee.cancelNotification(pn[index].uniqueid);
+                console.log('frequency set to null. will not set trigger');
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
-// end notification functions
+
+
+
+
+    // end notification functions
 
 
 
     // handles motion for swipeable to delete 
     const renderRightActions = (dragX, info) => {
-
-
-
 
         // swipeable function for animation
         const trans = dragX.interpolate({
@@ -231,11 +240,7 @@ const onCreateTriggerNotification = async()=> {
             outputRange: [-20, 0, 0, 1],
         });
 
-
-
-
         // returns for swipeable
-
         return (
             <RectButton
                 style={{
@@ -246,16 +251,11 @@ const onCreateTriggerNotification = async()=> {
                     width: '25%',
                     marginLeft: '5%',
                     paddingLeft: '10%'
-
-
                 }}
                 onPress={() => { deleteitem(info); }}
-
             >
                 <Animated.View style={{ transform: [{ translateX: trans }] }} >
-
                     <Icon name={"trash-outline"} size={30} color={'white'} />
-
                 </Animated.View>
             </RectButton>
         );
@@ -269,8 +269,8 @@ const onCreateTriggerNotification = async()=> {
         <ScrollView temp={pn}>
             {pn.map(item => {
                 let id = pn.indexOf(item);
-
                 id == -1 ? console.log('id being assigned negative one') : null;
+
                 return (
                     <Swipeable useNativeAnimations renderRightActions={(dragX) => renderRightActions(dragX, id)} key={pn[id].uniqueid}>
                         <View style={styles.container}>
@@ -279,7 +279,7 @@ const onCreateTriggerNotification = async()=> {
                                     style={styles.textbox}
                                     placeholder="Prayer Topic"
                                     defaultValue={pn[id].prayertext}
-                                    onChangeText={(text) =>  logtitle(text, id)}
+                                    onChangeText={(text) => logtitle(text, id)}
                                 />
                                 <TouchableOpacity onPress={() => { showstore(id); }}><Icon name="notifications-outline" color={'#1e2427'} size={30} /></TouchableOpacity>
                             </View>
@@ -287,23 +287,18 @@ const onCreateTriggerNotification = async()=> {
 
                             <View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#f6f5f5', top: 0, display: store == id ? 'flex' : 'none' }}>
                                 <View style={{ paddingRight: '20%', paddingLeft: '3%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 'auto', marginBottom: 'auto' }}>
-                                    
                                     <Picker
                                         item={pn[id].days}
-                                        
                                         items={dayfreq}
-                                        onItemChange={(value)=>{ logdays(value, id); setfrequency(value); }}
+                                        onItemChange={(value) => { logdays(value, id); setfrequency(value); }}
                                         tile="Frequency"
                                         placeholder='Frequency'
                                         isNullable={false}
-                                        containerStyle={{alignSelf: 'center', backgroundColor: '#e7e6e7', padding: '.6%', paddingLeft: 10, paddingRight: 10, borderRadius: 5}}
-                                        textInputStyle={{fontSize: 19, color: '#177bfe'}}
+                                        containerStyle={{ alignSelf: 'center', backgroundColor: '#e7e6e7', padding: '.6%', paddingLeft: 10, paddingRight: 10, borderRadius: 5 }}
+                                        textInputStyle={{ fontSize: 19, color: '#177bfe' }}
                                     />
-
-                                    <Text style={{alignSelf: 'center', fontSize: 19}}>at</Text>
-
+                                    <Text style={{ alignSelf: 'center', fontSize: 19 }}>at</Text>
                                     <DateTimePicker
-
                                         value={pn[id].time}
                                         mode={"time"}
                                         is24Hour={false}
@@ -311,11 +306,9 @@ const onCreateTriggerNotification = async()=> {
                                         onChange={(selectedValue) => logtime(selectedValue, id)}
                                         style={styles.datePicker}
                                     />
-                                    <TouchableOpacity onPress={() => { showstore(-1); }} style={{position: 'absolute', right: 20}}><Icon name={'checkmark-circle-outline'} color={'#1e2427'} size={35} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => { showstore(-1); }} style={{ position: 'absolute', right: 20 }}><Icon name={'checkmark-circle-outline'} color={'#1e2427'} size={35} /></TouchableOpacity>
                                 </View>
-                                
                             </View>
-
                         </View>
                     </Swipeable>
 
@@ -323,13 +316,10 @@ const onCreateTriggerNotification = async()=> {
             })}
             <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-evenly', width: Dimensions.get('window').width }}>
                 <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => additem()}><Icon name="add-circle-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
-                <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => onCreateTriggerNotification()}><Icon name="alert-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
+                <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => notifee.getTriggerNotificationIds().then(ids => console.log('All trigger notifications: ', ids))}><Icon name="alert-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
             </View>
         </ScrollView>
-
-
     )
-
 }
 
 
@@ -346,7 +336,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        
     },
     textbox: {
         fontSize: 21,
