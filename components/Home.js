@@ -11,7 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import { Picker } from 'react-native-woodpicker';
-import notifee, { TriggerType, IOSAuthorizationStatus } from '@notifee/react-native';
+import notifee, { TriggerType, IOSAuthorizationStatus, RepeatFrequency } from '@notifee/react-native';
 
 
 
@@ -198,7 +198,7 @@ export default function Home(props) {
         const trigger = {
             type: TriggerType.TIMESTAMP,
             timestamp: prayertime.getTime(),
-            repeatFrequency: pn[index].days.value
+            repeatFrequency: pn[index].days.value == 'WEEKLY' ? RepeatFrequency.WEEKLY : pn[index].days.value == 'DAILY' ? RepeatFrequency.DAILY : pn[index].days.value == 'HOURLY' ? RepeatFrequency.HOURLY : null
         };
 
         try {
@@ -316,7 +316,7 @@ export default function Home(props) {
             })}
             <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-evenly', width: Dimensions.get('window').width }}>
                 <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => additem()}><Icon name="add-circle-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
-                <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => notifee.getTriggerNotificationIds().then(ids => console.log('All trigger notifications: ', ids))}><Icon name="alert-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
+                
             </View>
         </ScrollView>
     )
@@ -327,7 +327,10 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: 55,
-        marginBottom: 'auto'
+        marginBottom: 'auto',
+        borderBottomColor: '#fbfafa',
+        borderBottomWidth: 1,
+        
     },
     subcontainer: {
         padding: '3%',
