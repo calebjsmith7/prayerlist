@@ -18,8 +18,7 @@ export default function Community(props){
 
     prayerfunc = () => {
        let results = data.filter(({ uid }) => subscriptionslist.includes(uid));
-        console.log('prayerfunc filter results equal to ' + results);
-
+        
        results.sort(function(a,b){
            if(Date.parse(a.date) == Date.parse(b.date))
            return 0;
