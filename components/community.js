@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, View, Text, ScrollView, Dimensions, ImageBackground } from 'react-native';
+import { TouchableOpacity, View, Text, ScrollView, Dimensions, ImageBackground, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FlagIcon from 'react-native-ico-flags';
 import { data } from './prayerdata';
@@ -57,7 +57,9 @@ export default function Community(props){
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                                            <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} />
+                                            {item.country ? <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> 
+                                            : <Image source={{uri: item.url}} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
+                                            
                                         </View>
                                         <View style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto', marginBottom: 'auto', marginLeft: '6%', width: Dimensions.get('window').width *.65, marginRight: '15%' }}>
                                             <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.ministry}</Text>
@@ -99,7 +101,8 @@ export default function Community(props){
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                                            <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} />
+                                        {item.country ? <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> 
+                                            : <Image source={{uri: item.url}} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
                                         </View>
                                         <View style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto', marginBottom: 'auto', marginLeft: '6%', width: Dimensions.get('window').width *.65, marginRight: '15%' }}>
                                             <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.ministry}</Text>

@@ -577,9 +577,255 @@ export const data = [
                     ministry: 'Revival in Canada',
                         logo: 'canada',
         },
-    
-
+        {
+            day: 31,
+            date: '2022-01-31T22:21:33.951Z',
+            title: 'Pray for civilians to get to safety',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 30,
+            date: '2022-01-30T22:21:33.951Z',
+            title: 'Pray for mercy for both countries',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 29,
+            date: '2022-01-29T22:21:33.951Z',
+            title: 'Pray for healthcare professionals in Ukraine',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 28,
+            date: '2022-01-28T22:21:33.951Z',
+            title: 'Pray for the war to end',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 27,
+            date: '2022-01-27T22:21:33.951Z',
+            title: 'Pray for supplies and gas to depleat among russian armies',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 26,
+            date: '2022-01-26T22:21:33.951Z',
+            title: 'Pray for wisdom in peace talks between both countries',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+{
+    day: 25,
+    date: '2022-01-25T22:21:33.951Z',
+    title: 'Pray for civilians to get to safety',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 24,
+    date: '2022-01-24T22:21:33.951Z',
+    title: 'Pray for Russian Tanks and Weapons to fail',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 23,
+    date: '2022-01-23T22:21:33.951Z',
+    title: 'Pray for Russian military to lay down their arms',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 22,
+    date: '2022-01-22T22:21:33.951Z',
+    title: 'Pray for international leaders to have wisdom regarding sanctions',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 21,
+    date: '2022-01-21T22:21:33.951Z',
+    title: 'Pray for wisdom for Pres. Zelensky',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 20,
+    date: '2022-01-20T22:21:33.951Z',
+    title: 'Pray that the destruction of cities will stop',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 19,
+    date: '2022-01-19T22:21:33.951Z',
+    title: 'Pray for angels to come to Ukrainian aid',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 18,
+    date: '2022-01-18T22:21:33.951Z',
+    title: 'Pray for Putin to have encounters with God and dreams in the night',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 17,
+    date: '2022-01-17T22:21:33.951Z',
+    title: 'Pray for supplies and humanitarian aid to get through to Ukraine',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+        {
+            day: 16,
+            date: '2022-01-16T22:21:33.951Z',
+            title: 'Pray for an increase in foreign country generocity to Ukraine',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 15,
+            date: '2022-01-15T22:21:33.951Z',
+            title: 'Pray for civilians to get to safety',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 14,
+            date: '2022-01-14T22:21:33.951Z',
+            title: 'Pray for mercy for both countries',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 13,
+            date: '2022-01-13T22:21:33.951Z',
+            title: 'Pray for healthcare professionals in Ukraine',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 12,
+            date: '2022-01-12T22:21:33.951Z',
+            title: 'Pray for the war to end',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 11,
+            date: '2022-01-11T22:21:33.951Z',
+            title: 'Pray for supplies and gas to depleat among russian armies',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+        {
+            day: 10,
+            date: '2022-01-10T22:21:33.951Z',
+            title: 'Pray for wisdom in peace talks between both countries',
+            uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+            ministry: 'Peace in Ukraine',
+            url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+        },
+{
+    day: 9,
+    date: '2022-01-09T22:21:33.951Z',
+    title: 'Pray for civilians to get to safety',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 8,
+    date: '2022-01-08T22:21:33.951Z',
+    title: 'Pray for Russian Tanks and Weapons to fail',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 7,
+    date: '2022-01-07T22:21:33.951Z',
+    title: 'Pray for Russian military to lay down their arms',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 6,
+    date: '2022-01-06T22:21:33.951Z',
+    title: 'Pray for international leaders to have wisdom regarding sanctions',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 5,
+    date: '2022-01-05T22:21:33.951Z',
+    title: 'Pray for wisdom for Pres. Zelensky',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 4,
+    date: '2022-01-04T22:21:33.951Z',
+    title: 'Pray that the destruction of cities will stop',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 3,
+    date: '2022-01-03T22:21:33.951Z',
+    title: 'Pray for angels to come to Ukrainian aid',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 2,
+    date: '2022-01-02T22:21:33.951Z',
+    title: 'Pray for Putin to have encounters with God and dreams in the night',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+},
+{
+    day: 1,
+    date: '2022-01-01T22:21:33.951Z',
+    title: 'Pray for supplies and humanitarian aid to get through to Ukraine',
+    uid: 'd8510ab5-a679-4360-9c69-71762242c5c7',
+    ministry: 'Peace in Ukraine',
+    url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+}
 ]
 
 
-export const minlist = [{ministry: "Revival in the USA", flag: "united-states-of-america", uid: 'b3bb2262-678d-4107-84a5-45fa3d35b3dc'}, {ministry: "Revival in Canada", flag: "canada", uid: 'f480e106-28cb-42da-a5c0-af2285bdb102'}];
+export const minlist = [{ministry: "Revival in the USA", flag: "united-states-of-america", uid: 'b3bb2262-678d-4107-84a5-45fa3d35b3dc'}, {ministry: "Revival in Canada", flag: "canada", uid: 'f480e106-28cb-42da-a5c0-af2285bdb102'}, {ministry: 'Peace in Ukraine', uid: 'd8510ab5-a679-4360-9c69-71762242c5c7', url: 'https://i.ibb.co/GPS55N4/ukr.jpg'}]

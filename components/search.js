@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, View, Text, Dimensions } from 'react-native';
+import { TouchableOpacity, View, Text, Dimensions, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBar } from 'react-native-elements';
 import { minlist } from './prayerdata';
@@ -56,7 +56,9 @@ export default function Search(props){
                        <View key={uuid.v4()}>
                            <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-                                   <FlagIcon name={item.flag} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} />
+                              {item.flag ? <FlagIcon name={item.flag} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> :
+                              <Image source={{uri: item.url}} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }  
+                                           
                                </View>
                                <View style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto', marginBottom: 'auto', marginLeft: '6%', width: Dimensions.get('window').width * .65 }}>
                                    <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.ministry}</Text>
