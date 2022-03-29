@@ -316,7 +316,6 @@ export default function Home(props) {
             })}
             <View style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-evenly', width: Dimensions.get('window').width }}>
                 <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => additem()}><Icon name="add-circle-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
-                
             </View>
         </ScrollView>
     )

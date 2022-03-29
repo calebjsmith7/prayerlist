@@ -21,6 +21,7 @@ import logo from './images/pl-logo-blk.png';
 import { data } from './components/prayerdata';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MinistryListDatabaseService from './services/MinistryListDatabaseService';
 
 
 
@@ -33,8 +34,10 @@ const App = () => {
   const [loading, setloading] = React.useState(true);
   const [topdata, settopdata] = React.useState([]);
   const [subscriptiondata, setsubscriptiondata] = React.useState([]);
+  const [dbMinistries, setDbMinistries] = React.useState([]);
+  const [dbPrayers, setDbPrayers] = React.useState([]);
   // fetch to get local data
-
+React.useEffect(()=>{
   getMultiple = async () => {
     if (loading) {
       let keylist = [];
@@ -47,6 +50,14 @@ const App = () => {
         if (keylist.includes('subscriptionid')) {
           keylist.splice(keylist.indexOf('subscriptionid'), 1,);
         }
+        // probably where I will call database service
+        let minList = await MinistryListDatabaseService('listofministries');
+        setDbMinistries(minList);
+        // database service for prayers
+        let prayerList = await MinistryListDatabaseService('maincollection');
+        console.log('prayerList is ' + JSON.stringify(prayerList));
+        setDbPrayers(prayerList);
+
         // end subscriptions
         if (keylist != null) {
 
@@ -54,8 +65,10 @@ const App = () => {
 
           // start subscriptions 
           subs = await AsyncStorage.getItem('subscriptionid');
-          subs = JSON.parse(subs);
-          setsubscriptiondata(subs.subscriptions);
+          if(subs != undefined){
+            subs = JSON.parse(subs);
+            setsubscriptiondata(subs.subscriptions);
+          }
           // end subscriptions
           for (each in values) {
             let lox = JSON.parse(values[each][1]);
@@ -73,12 +86,13 @@ const App = () => {
       catch (e) {
         console.log(e)
       }
-
       settopdata(renewedfocus);
       setloading(false);
     } else null;
   }
   getMultiple();
+}, []);
+  
 
   // child subscribe function
 
@@ -118,13 +132,13 @@ const App = () => {
           tabBarIcon: ({ focused }) => (
             <Icon name={focused ? "people-circle" : "people-circle-outline"} color="grey" size={30} />
           ),
-        }}>{() => <Community listofsubscriptions={subscriptiondata} />}</Tab.Screen>
+        }}>{() => <Community listofsubscriptions={subscriptiondata} prayers={dbPrayers}/>}</Tab.Screen>
         <Tab.Screen name="Search" options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ focused }) => (
             <Icon name={focused ? "search-circle" : "search-circle-outline"} color="grey" size={30} />
           ),
-        }}>{() => <Search setlistofsubscriptions={updatesubscriptions} listofsubscriptions={subscriptiondata} />}</Tab.Screen>
+        }}>{() => <Search setlistofsubscriptions={updatesubscriptions} listofsubscriptions={subscriptiondata} dbMins={dbMinistries}/>}</Tab.Screen>
         <Tab.Screen name="More" component={More} options={{
           tabBarLabel: 'More',
           tabBarIcon: ({ focused }) => (

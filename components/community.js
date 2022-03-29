@@ -8,6 +8,7 @@ import uuid from 'react-native-uuid';
 import { BackgroundImage } from 'react-native-elements/dist/config';
 import { Divider } from 'react-native-elements';
 import ima from '../images/pl-logo-blk.png';
+import defaultImage from '../images/defaultimage.png';
 
 export default function Community(props){
     const Navigation = useNavigation();
@@ -15,19 +16,23 @@ export default function Community(props){
    // let subscriptions = [...props.listofsubscriptions];
     let bigarrayofprayers = [];
     console.log('list of subscriptions from community page is ' + subscriptionslist);
+    console.log('length of subscriptions list is ' + subscriptionslist.length);
 
     prayerfunc = () => {
-       let results = data.filter(({ uid }) => subscriptionslist.includes(uid));
+        let dataIncludingDbPrayers = [...data, ...props.prayers];
+
+       let results = dataIncludingDbPrayers.filter(({ ministryId }) => subscriptionslist.includes(ministryId));
         
        results.sort(function(a,b){
-           if(Date.parse(a.date) == Date.parse(b.date))
+           if(Date.parse(a.time) == Date.parse(b.time))
            return 0;
-           if(Date.parse(a.date) < Date.parse(b.date))
+           if(Date.parse(a.time) < Date.parse(b.time))
            return 1;
-           if(Date.parse(a.date) > Date.parse(b.date))
+           if(Date.parse(a.time) > Date.parse(b.time))
            return -1;
        })
        bigarrayofprayers = results;
+       console.log(bigarrayofprayers);
     }
     prayerfunc();
 
@@ -48,22 +53,22 @@ export default function Community(props){
                 let today = new Date();
                 let todaysday = today.getDate();
                 let oneweekago = today;
-                let weekInMilliseconds = 7 * 24 * 60 * 1000;
+                let weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
                 oneweekago.setTime(today.getTime() - weekInMilliseconds);
         
                     
                             return(
-                                 new Date(item.date).getDate() == todaysday ?
+                                 new Date(item.time).getDate() == todaysday ?
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                             {item.country ? <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> 
-                                            : <Image source={{uri: item.url}} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
+                                            : <Image source={item.url ? {uri: item.url} : defaultImage} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
                                             
                                         </View>
                                         <View style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto', marginBottom: 'auto', marginLeft: '6%', width: Dimensions.get('window').width *.65, marginRight: '15%' }}>
-                                            <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.ministry}</Text>
-                                            <Text style={{flexWrap: 'wrap'}}>{item.title}</Text>
+                                            <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.name}</Text>
+                                            <Text style={{flexWrap: 'wrap'}}>{item.text}</Text>
                                         </View>
             
                                     </View>
@@ -88,6 +93,10 @@ export default function Community(props){
             
             bigarrayofprayers.map((item) => {
                 let today = new Date();
+                let yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                yesterday.setHours(0);
+                yesterday.setMinutes(1);
                 let todaysday = today.getDate();
                 let oneweekago = null;
                 let weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
@@ -97,16 +106,16 @@ export default function Community(props){
                
                     
                             return(
-                                  item.day >= oneweekago.getDate() && item.day < todaysday?
+                               (item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() < yesterday.getDate()) || item.time ?
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
-                                        <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                                        <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#1e2427', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                         {item.country ? <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> 
-                                            : <Image source={{uri: item.url}} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
+                                            : <Image source={item.url ? {uri: item.url} : defaultImage} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
                                         </View>
                                         <View style={{ display: 'flex', flexDirection: 'column', marginTop: 'auto', marginBottom: 'auto', marginLeft: '6%', width: Dimensions.get('window').width *.65, marginRight: '15%' }}>
-                                            <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.ministry}</Text>
-                                            <Text style={{flexWrap: 'wrap'}}>{item.title}</Text>
+                                            <Text style={{ fontWeight: '600', fontSize: 16 }}>{item.name}</Text>
+                                            <Text style={{flexWrap: 'wrap'}}>{item.text}</Text>
                                         </View>
             
                                     </View>
