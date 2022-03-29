@@ -1,22 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, View, Text, ScrollView, Dimensions, ImageBackground, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View, Text, ScrollView, Dimensions, Image } from 'react-native';
 import FlagIcon from 'react-native-ico-flags';
 import { data } from './prayerdata';
 import uuid from 'react-native-uuid';
-import { BackgroundImage } from 'react-native-elements/dist/config';
 import { Divider } from 'react-native-elements';
-import ima from '../images/pl-logo-blk.png';
 import defaultImage from '../images/defaultimage.png';
 
 export default function Community(props){
-    const Navigation = useNavigation();
     const [subscriptionslist, setsubscriptionslist] = React.useState(props.listofsubscriptions);
    // let subscriptions = [...props.listofsubscriptions];
     let bigarrayofprayers = [];
-    console.log('list of subscriptions from community page is ' + subscriptionslist);
-    console.log('length of subscriptions list is ' + subscriptionslist.length);
 
     prayerfunc = () => {
         let dataIncludingDbPrayers = [...data, ...props.prayers];
@@ -32,7 +26,6 @@ export default function Community(props){
            return -1;
        })
        bigarrayofprayers = results;
-       console.log(bigarrayofprayers);
     }
     prayerfunc();
 
@@ -105,7 +98,7 @@ export default function Community(props){
                 let todaytime = today.getTime();
                 
                 oneweekago = new Date(todaytime - weekInMilliseconds);
-               
+              
                     
                             return(
                                (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() < yesterday.getDate()) ?
@@ -126,9 +119,7 @@ export default function Community(props){
                                 :
                                 null
                             );}
-                       
                     )
- 
             }
  
         </ScrollView>
