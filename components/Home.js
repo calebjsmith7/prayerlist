@@ -165,7 +165,9 @@ export default function Home(props) {
     // add prayer item to state
     const additem = () => {
         if (pn.length > 0) {
-            setPn([...pn, new PrayerTemplate(null, null, new Date(1598051730000), uuid.v4(), pn[pn.length - 1].order + 1)]);
+            if(pn[pn.length -1].prayertext != null){
+                setPn([...pn, new PrayerTemplate(null, null, new Date(1598051730000), uuid.v4(), pn[pn.length - 1].order + 1)]);
+            }
         } else {
             setPn([new PrayerTemplate(null, null, new Date(1598051730000), uuid.v4(), 0)]);
         }
@@ -281,9 +283,9 @@ export default function Home(props) {
                                     defaultValue={pn[id].prayertext}
                                     onChangeText={(text) => logtitle(text, id)}
                                 />
-                                <TouchableOpacity onPress={() => { showstore(id); }}><Icon name="notifications-outline" color={'#1e2427'} size={30} /></TouchableOpacity>
+                                <TouchableOpacity onPress={() => { showstore(id); }} style={{ position: 'absolute', right: 20,  }}><Icon name="notifications-outline" color={'#1e2427'} size={30} /></TouchableOpacity>
                             </View>
-                            <Divider />
+                            <Divider style={{marginTop: 5}}/>
 
                             <View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#f6f5f5', top: 0, display: store == id ? 'flex' : 'none' }}>
                                 <View style={{ paddingRight: '20%', paddingLeft: '3%', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: 'auto', marginBottom: 'auto' }}>
@@ -338,10 +340,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        
     },
     textbox: {
-        fontSize: 21,
-        marginLeft: '3%'
+        fontSize: 18,
+        marginLeft: '3%',
+        width: '80%',
+        
     },
     datePicker: {
         width: 100,
