@@ -1109,8 +1109,225 @@ export const data = [
         ministryId: 'd8510ab5-a679-4360-9c69-71762242c5c7',
         name: 'Peace in Ukraine',
         url: 'https://i.ibb.co/GPS55N4/ukr.jpg'
+    },
+    {
+        day: 31,
+        time: '2022-01-31T01:01:01.951Z',
+        text: 'Pray for eyes to see and ears to hear.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 30,
+        time: '2022-01-30T01:01:01.951Z',
+        text: 'Pray for your faith to increase.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 29,
+        time: '2022-01-29T01:01:01.951Z',
+        text: 'Pray for an increase of dreams and visions.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 28,
+        time: '2022-01-28T01:01:01.951Z',
+        text: 'Pray for opportunities to share your faith and for boldness.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 27,
+        time: '2022-01-27T01:01:01.951Z',
+        text: 'Ask the Lord for a prophetic word for someone in your life today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 26,
+        time: '2022-01-26T01:01:01.951Z',
+        text: 'Pray for more spiritual gifts evidenced in your life.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 25,
+        time: '2022-01-25T01:01:01.951Z',
+        text: 'Pray for the fruit of the Spirit to increase in you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 24,
+        time: '2022-01-24T01:01:01.951Z',
+        text: 'Pray for more love and compassion for those around you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 23,
+        time: '2022-01-23T01:01:01.951Z',
+        text: 'Pray for the people in your life who do not know Jesus.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 22,
+        time: '2022-01-22T01:01:01.951Z',
+        text: 'Pray for God to renew your mind.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 21,
+        time: '2022-01-21T01:01:01.951Z',
+        text: 'Pray for wisdom and revelation as you read the word of God.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 20,
+        time: '2022-01-20T01:01:01.951Z',
+        text: 'Ask the Lord to baptize you in his Holy Spirit today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 19,
+        time: '2022-01-29T01:01:01.951Z',
+        text: 'Ask the Lord for an increase in the ability to recognize His Presence.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 18,
+        time: '2022-01-18T01:01:01.951Z',
+        text: 'Pray for signs, wonders, and miracles to follow you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 17,
+        time: '2022-01-17T01:01:01.951Z',
+        text: 'Pray for your local church, and local pastors today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 16,
+        time: '2022-01-16T01:01:01.951Z',
+        text: 'Pray for wisdom to solve problems around you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 15,
+        time: '2022-01-15T01:01:01.951Z',
+        text: 'Ask the Lord to reveal to you heavenly mysteries today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 14,
+        time: '2022-01-14T01:01:01.951Z',
+        text: 'Pray for the Joy of the Lord to become your strength and for an increase of Joy today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 13,
+        time: '2022-01-13T01:01:01.951Z',
+        text: 'Ask God to remove the lies you have believed and replace them with His truth',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 12,
+        time: '2022-01-12T01:01:01.951Z',
+        text: 'Pray for more of the love of God in your life for yourself and others around you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 11,
+        time: '2022-0111T01:01:01.951Z',
+        text: 'Pray for a fresh baptism of the Holy Spirit today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 10,
+        time: '2022-01-10T01:01:01.951Z',
+        text: 'Pray for an increase in influence to disciple those around you in the Kingdom.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 9,
+        time: '2022-01-09T01:01:01.951Z',
+        text: 'Pray for more spiritual hunger in your life and for more of God.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 8,
+        time: '2022-01-08T01:01:01.951Z',
+        text: 'Pray for more childlike faith.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 7,
+        time: '2022-01-7T01:01:01.951Z',
+        text: 'Pray for heavenly realities and resources to become your reality.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 6,
+        time: '2022-01-06T01:01:01.951Z',
+        text: 'Pray for God to send co-laborers into your life to partner with you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 5,
+        time: '2022-01-05T01:01:01.951Z',
+        text: 'Pray for spiritual parents and mentors to come into your life.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 4,
+        time: '2022-01-04T01:01:01.951Z',
+        text: 'Pray for opportunities to show God\'s love to someone today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 3,
+        time: '2022-01-03T01:01:01.951Z',
+        text: 'Pray for God to soften your heart to the things he has for you.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 2,
+        time: '2022-01-02T01:01:01.951Z',
+        text: 'Pray for Christians around the world and that God would show up in powerful ways in their lives today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
+    },
+    {
+        day: 1,
+        time: '2022-01-01T01:01:01.951Z',
+        text: 'Pray for Jesus to reveal Himself to you today.',
+        ministryId: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c',
+        name: 'Personal Revival'
     }
 ]
 
 
-export const minlist = [{name: "Revival in Mexico", flag: "mexico", id: "b88a6c1c-52bd-4714-933e-54c9dd3d3408"},{ name: "Revival in the USA", flag: "united-states-of-america", id: 'b3bb2262-678d-4107-84a5-45fa3d35b3dc' }, { name: "Revival in Canada", flag: "canada", id: 'f480e106-28cb-42da-a5c0-af2285bdb102' }, { name: 'Peace in Ukraine', id: 'd8510ab5-a679-4360-9c69-71762242c5c7', url: 'https://i.ibb.co/GPS55N4/ukr.jpg' }]
+export const minlist = [{name: "Revival in Mexico", flag: "mexico", id: "b88a6c1c-52bd-4714-933e-54c9dd3d3408"},{ name: "Revival in the USA", flag: "united-states-of-america", id: 'b3bb2262-678d-4107-84a5-45fa3d35b3dc' }, { name: "Revival in Canada", flag: "canada", id: 'f480e106-28cb-42da-a5c0-af2285bdb102' }, { name: 'Peace in Ukraine', id: 'd8510ab5-a679-4360-9c69-71762242c5c7', url: 'https://i.ibb.co/GPS55N4/ukr.jpg' }, { name: 'Personal Revival', id: '872eb1d0-48f3-4ff9-8819-68fd2b21b65c'}]
