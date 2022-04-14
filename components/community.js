@@ -6,28 +6,85 @@ import { data } from './prayerdata';
 import uuid from 'react-native-uuid';
 import { Divider } from 'react-native-elements';
 import defaultImage from '../images/defaultimage.png';
+import MinistryListDatabaseService from '../services/MinistryListDatabaseService';
+import firestore from '@react-native-firebase/firestore';
 
 export default function Community(props){
     const [subscriptionslist, setsubscriptionslist] = React.useState(props.listofsubscriptions);
+    const [dbPrayers, setDbPrayers] = React.useState([]);
    // let subscriptions = [...props.listofsubscriptions];
     let bigarrayofprayers = [];
 
-    prayerfunc = () => {
-        let dataIncludingDbPrayers = [...data, ...props.prayers];
+    React.useEffect(()=>{
+        const retreiveDbPrayers = async () => {
+            let localSubs = [...subscriptionslist];
+            let firstPrayerData = [];
+            let prayerData = [];
+            if(subscriptionslist.length > 0){
+                firestore()
+                .collection('maincollection')
+                .where('ministryId', 'in', localSubs)
+                .get()
+                .then((querySnapshot) => {
+                    let res = querySnapshot.docs;
+                    for(let i = 0; i < res.length; i++){
+                        firstPrayerData.push(res[i]._data);
+                    }
+                    // time fix
+                    for(let i = 0; i < firstPrayerData.length; i++){
+                        let localTime = firstPrayerData[i].time.toDate();
+                        localTime = localTime.getTime();
+                        let localObj = firstPrayerData[i];
+                        localObj.time = localTime;
+                         prayerData.push(localObj);
+                     };
+                     console.log(prayerData);
+                    // add time fix here
 
-       let results = dataIncludingDbPrayers.filter(({ ministryId }) => subscriptionslist.includes(ministryId));
+                    let dataIncludingDbPrayers = [...data, ...prayerData];
+                   
+                    
+                    let results = dataIncludingDbPrayers.filter(({ ministryId }) => subscriptionslist.includes(ministryId));
+                    
+                    results.sort(function(a,b){
+                        if(Date.parse(a.time) == Date.parse(b.time))
+                        return 0;
+                        if(Date.parse(a.time) < Date.parse(b.time))
+                        return 1;
+                        if(Date.parse(a.time) > Date.parse(b.time))
+                        return -1;
+                    })
+                   // its the first item in results here
+                    bigarrayofprayers = results;
+                    setDbPrayers(results);
+                    console.log('dbprayers is ' + JSON.stringify(dbPrayers));
+                }) 
+            } 
+        }
+        retreiveDbPrayers();
+
+/*
+        prayerfunc = () => {
+            let dataIncludingDbPrayers = [...data, ...dbPrayers];
+    
+           let results = dataIncludingDbPrayers.filter(({ ministryId }) => subscriptionslist.includes(ministryId));
+            
+           results.sort(function(a,b){
+               if(Date.parse(a.time) == Date.parse(b.time))
+               return 0;
+               if(Date.parse(a.time) < Date.parse(b.time))
+               return 1;
+               if(Date.parse(a.time) > Date.parse(b.time))
+               return -1;
+           })
+           bigarrayofprayers = results;
+        }
+        prayerfunc();*/
         
-       results.sort(function(a,b){
-           if(Date.parse(a.time) == Date.parse(b.time))
-           return 0;
-           if(Date.parse(a.time) < Date.parse(b.time))
-           return 1;
-           if(Date.parse(a.time) > Date.parse(b.time))
-           return -1;
-       })
-       bigarrayofprayers = results;
-    }
-    prayerfunc();
+    },[subscriptionslist])
+
+
+    
 
 
 
@@ -42,7 +99,7 @@ export default function Community(props){
             
             { 
             
-            bigarrayofprayers.map((item) => {
+            dbPrayers.map((item) => {
                 let today = new Date();
                 let todaysday = today.getDate();
                 let todaysmonth = today.getMonth();
@@ -54,6 +111,7 @@ export default function Community(props){
                     
                             return(
                                  (item.day && new Date(item.time).getDate() == todaysday)||(new Date(item.time).getDate() == todaysday && new Date(item.time).getMonth() == todaysmonth && new Date(item.time).getFullYear() == todaysyear) ?
+                              
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
@@ -86,7 +144,7 @@ export default function Community(props){
 
             { 
             
-            bigarrayofprayers.map((item) => {
+            dbPrayers.map((item) => {
                 let today = new Date();
                 let yesterday = new Date(today);
                 yesterday.setDate(yesterday.getDate() - 1);
@@ -101,7 +159,7 @@ export default function Community(props){
               
                     
                             return(
-                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() < yesterday.getDate()) ?
+                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() <= yesterday.getDate())  ?
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#1e2427', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>

@@ -1073,7 +1073,7 @@ export const data = [
     {
         day: 5,
         time: '2022-01-05T22:21:33.951Z',
-        text: 'Pray for wisdom for Pres. Zelensky',
+        text: 'Pray for wisdom for President Zelensky',
         ministryId: 'd8510ab5-a679-4360-9c69-71762242c5c7',
         name: 'Peace in Ukraine',
         url: 'https://i.ibb.co/GPS55N4/ukr.jpg'

@@ -22,7 +22,7 @@ import { data } from './components/prayerdata';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MinistryListDatabaseService from './services/MinistryListDatabaseService';
-
+import SplashScreen from 'react-native-splash-screen';
 
 
 const Stack = createStackNavigator();
@@ -36,6 +36,12 @@ const App = () => {
   const [subscriptiondata, setsubscriptiondata] = React.useState([]);
   const [dbMinistries, setDbMinistries] = React.useState([]);
   const [dbPrayers, setDbPrayers] = React.useState([]);
+
+// hide splash
+  React.useEffect(() => {
+    SplashScreen.hide();
+  });
+
   // fetch to get local data
 React.useEffect(()=>{
   getMultiple = async () => {
@@ -54,9 +60,9 @@ React.useEffect(()=>{
         let minList = await MinistryListDatabaseService('listofministries');
         setDbMinistries(minList);
         // database service for prayers
-        let prayerList = await MinistryListDatabaseService('maincollection');
+       /* let prayerList = await MinistryListDatabaseService('maincollection');
         console.log('prayerList is ' + JSON.stringify(prayerList));
-        setDbPrayers(prayerList);
+        setDbPrayers(prayerList);*/
 
         // end subscriptions
         if (keylist != null) {
