@@ -147,7 +147,7 @@ export default function Community(props){
               
                     
                             return(
-                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() <= yesterday.getDate()) || (exception && (item.day < todaysday)) || (exception && (item.time <= yesterday.getTime()) && (item.time >= new Date(oneweekago).getTime())) ?
+                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() <= yesterday.getDate()) || (exception && (item.day < todaysday)) || (exception && (item.time <= yesterday.getTime()) && (item.time >= new Date(oneweekago).getTime())) || (exception && item.day && (((item.day + 30) - (todaysday + 30)) >= 23)) ?
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#1e2427', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
