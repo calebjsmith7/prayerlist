@@ -90,6 +90,7 @@ export default function Home(props) {
         middlevar.order = index;
         middlepn.splice(index, 1, middlevar);
         setPn(middlepn);
+        
         //async below
         console.log(JSON.stringify(middlevar));
         const setStringValue = async () => {
@@ -115,6 +116,7 @@ export default function Home(props) {
         middlevar.order = index;
         middlepn.splice(index, 1, middlevar);
         setPn(middlepn);
+   
         //async below
         console.log(JSON.stringify(middlevar));
         const setStringValue = async () => {
@@ -148,6 +150,7 @@ export default function Home(props) {
         let newlist = [...pn];
         newlist.splice(info, 1);
         setPn(newlist);
+        props.setUpdata(newlist);
         // remove from local storage
         removeValue = async () => {
             try {
@@ -262,7 +265,6 @@ export default function Home(props) {
     }
 
 
-
     // home component return map of pn which is state array of prayer objects
     return (
 
@@ -306,7 +308,7 @@ export default function Home(props) {
                                         onChange={(selectedValue) => logtime(selectedValue, id)}
                                         style={styles.datePicker}
                                     />
-                                    <TouchableOpacity onPress={() => { showstore(-1); }} style={{ position: 'absolute', right: 20 }}><Icon name={'checkmark-circle-outline'} color={'#1e2427'} size={35} /></TouchableOpacity>
+                                    <TouchableOpacity onPress={() => { showstore(-1); props.setUpdata(pn);}} style={{ position: 'absolute', right: 20 }}><Icon name={'checkmark-circle-outline'} color={'#1e2427'} size={35} /></TouchableOpacity>
                                 </View>
                             </View>
                         </View>

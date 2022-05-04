@@ -21,8 +21,6 @@ export default More = () => {
             <TouchableOpacity style={{marginLeft: '5%', marginTop: '5%'}} onPress={()=> { Linking.openURL('https://apps.apple.com/us/app/prayer-list-a-prayer-app/id1614678041')}}><Text style={{color: '#1e2427', fontSize: 21}}>* Review</Text></TouchableOpacity>
             <TouchableOpacity style={{marginLeft: '5%', marginTop: '5%'}} onPress={()=> { Linking.openURL('https://sites.google.com/view/worship-pads-pro-privacypolicy/support')}}><Text style={{color: '#1e2427', fontSize: 21}}>* Support</Text></TouchableOpacity>
             <Divider orientation="horizontal" style={{marginTop: '5%'}} />
-            <TouchableOpacity style={{marginLeft: '5%', marginTop: '5%'}} onPress={()=> { Linking.openURL('https://cash.app/$calebjsmith')}}><Text style={{color: '#1e2427', fontSize: 21}}>* Donate to Prayer List</Text></TouchableOpacity>
-            <Divider orientation="horizontal" style={{marginTop: '5%'}} />
             <TouchableOpacity style={{marginLeft: '5%', marginTop: '5%'}} onPress={()=> { Linking.openURL('https://apps.apple.com/us/app/prayer-list-a-prayer-app/id1614678041')}}><Text style={{color: '#1e2427', fontSize: 21}}>* Share this app with a friend!</Text></TouchableOpacity>
             <Divider orientation="horizontal" style={{marginTop: '4%'}} />
             <TouchableOpacity style={{marginLeft: '5%', marginTop: '5%', paddingBottom: '20%'}} onPress={()=> { Linking.openURL('https://apps.apple.com/us/app/prayer-list-for-ministries/id1614678377')}}><Text style={{color: '#1e2427', fontSize: 21}}>* Create a Ministry Page</Text></TouchableOpacity>

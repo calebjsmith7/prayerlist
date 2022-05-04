@@ -42,6 +42,13 @@ const App = () => {
     SplashScreen.hide();
   });
 
+
+  // func to set topdata from child
+
+  const setTheTopData = (val) => {
+    settopdata(val);
+  }
+
   // fetch to get local data
 React.useEffect(()=>{
   getMultiple = async () => {
@@ -132,7 +139,7 @@ React.useEffect(()=>{
           tabBarIcon: ({ focused }) => (
             <Icon name={focused ? "home" : "home-outline"} color="grey" size={30} />
           ),
-        }}>{() => <Home updata={topdata} />}</Tab.Screen>
+        }}>{()=><Home updata={topdata} setUpdata={setTheTopData}/>}</Tab.Screen>
         <Tab.Screen name="Community" options={{
           tabBarLabel: 'Community',
           tabBarIcon: ({ focused }) => (

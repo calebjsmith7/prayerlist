@@ -63,23 +63,7 @@ export default function Community(props){
         }
         retreiveDbPrayers();
 
-/*
-        prayerfunc = () => {
-            let dataIncludingDbPrayers = [...data, ...dbPrayers];
-    
-           let results = dataIncludingDbPrayers.filter(({ ministryId }) => subscriptionslist.includes(ministryId));
-            
-           results.sort(function(a,b){
-               if(Date.parse(a.time) == Date.parse(b.time))
-               return 0;
-               if(Date.parse(a.time) < Date.parse(b.time))
-               return 1;
-               if(Date.parse(a.time) > Date.parse(b.time))
-               return -1;
-           })
-           bigarrayofprayers = results;
-        }
-        prayerfunc();*/
+
         
     },[subscriptionslist])
 
@@ -114,7 +98,7 @@ export default function Community(props){
                               
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
-                                        <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#f00', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                                        <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#1e2427', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                                             {item.country ? <FlagIcon name={item.logo} height={Dimensions.get('window').height / 5.5} width={Dimensions.get('window').width / 5.5} /> 
                                             : <Image source={item.url ? {uri: item.url} : defaultImage} style={{height: Dimensions.get('window').height /5.5, width: Dimensions.get('window').width /5.5}}/> }
                                             
@@ -154,12 +138,16 @@ export default function Community(props){
                 let oneweekago = null;
                 let weekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
                 let todaytime = today.getTime();
+                let exception = false;
                 
                 oneweekago = new Date(todaytime - weekInMilliseconds);
+                if(todaysday < 7){
+                    exception = true;
+                }
               
                     
                             return(
-                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() <= yesterday.getDate())  ?
+                               (item.day && item.day >= oneweekago.getDate() && item.day < todaysday) || (new Date(item.time).getDate() >= oneweekago.getDate() && new Date(item.time).getDate() <= yesterday.getDate()) || (exception && (item.day < todaysday)) || (exception && (item.time <= yesterday.getTime()) && (item.time >= new Date(oneweekago).getTime())) ?
                                 <View key={uuid.v4()}>
                                     <View style={{ display: 'flex', flexDirection: 'row', alignContent: 'center', marginLeft: '8%', marginTop: '3%' }}>
                                         <View style={{ borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2, backgroundColor: '#1e2427', width: Dimensions.get('window').width / 9, height: Dimensions.get('window').height / 19, alignContent: 'center', justifyContent: 'center', overflow: 'hidden' }}>
