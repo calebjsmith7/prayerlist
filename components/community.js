@@ -141,7 +141,7 @@ export default function Community(props){
                 let exception = false;
                 
                 oneweekago = new Date(todaytime - weekInMilliseconds);
-                if(todaysday < 7){
+                if(todaysday <= 7){
                     exception = true;
                 }
               

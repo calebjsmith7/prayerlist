@@ -30,7 +30,7 @@ export default function Home(props) {
         { label: "Daily", value: 'DAILY' },
         { label: "Weekly", value: 'WEEKLY' }
     ];
-
+    console.log(uuid.v4());
     // user authorization function for push notifications. happens once
     const authoriz = async () => {
         const settings = await notifee.requestPermission();
@@ -267,8 +267,8 @@ export default function Home(props) {
 
     // home component return map of pn which is state array of prayer objects
     return (
-
-        <ScrollView temp={pn}>
+<View style={{flex: 1}}>
+        <ScrollView  contentContainerStyle={{flexGrow: 1, paddingBottom: pn.length * 25}} temp={pn}>
             {pn.map(item => {
                 let id = pn.indexOf(item);
                 id == -1 ? console.log('id being assigned negative one') : null;
@@ -320,6 +320,8 @@ export default function Home(props) {
                 <TouchableOpacity style={{ alignSelf: 'center', marginTop: '5%', marginBottom: '5%' }} onPress={() => additem()}><Icon name="add-circle-outline" color={'#1e2427'} size={45} /></TouchableOpacity>
             </View>
         </ScrollView>
+       
+        </View>
     )
 }
 
