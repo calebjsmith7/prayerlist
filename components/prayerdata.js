@@ -8,7 +8,7 @@ export const data = [
 
     {
         day: 31,
-        time: today.getDate() < 31 ? today.setDate(31) : today.setDate(31).setMonth(today.getMonth() - 1),
+        time: '2022-01-31T22:21:33.951Z',
         text: 'Pray for the Gospel to be heard in the USA',
         ministryId: 'b3bb2262-678d-4107-84a5-45fa3d35b3dc',
         country: 'the USA',
