@@ -25,8 +25,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import MinistryListDatabaseService from "./services/MinistryListDatabaseService";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
-
+// NEW: provider for bottom-sheet modals (safe to use for BottomSheet too)
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+// NEW: the support sheet
+import SupportBannerSheet from "./components/SupportBannerSheet";
 const Tab = createBottomTabNavigator();
+
+const TAB_BAR_HEIGHT = 64;
 
 // notifications setup for expo
 Notifications.setNotificationHandler({
@@ -90,14 +95,6 @@ const App = () => {
   const [subscriptiondata, setsubscriptiondata] = useState([]);
   const [dbMinistries, setDbMinistries] = useState([]);
   const [dbPrayers, setDbPrayers] = useState([]);
-
-  // hide splash
-  // right below your existing useState hooks
-  /*useEffect(() => {
-    if (!loading) {
-      SplashScreen.hideAsync().catch(console.warn);
-    }
-  }, [loading]);*/
 
   // func to set topdata from child
 
@@ -210,11 +207,11 @@ const App = () => {
 
   function MyTabs() {
     return (
-      <>
+      <View style={{ flex: 1 }}>
         <Tab.Navigator
           initialRouteName="Home"
           screenOptions={{
-            tabBarStyle: { backgroundColor: "#fbfafa" },
+            tabBarStyle: { backgroundColor: "#fbfafa", height: TAB_BAR_HEIGHT },
             tabBarBadgeStyle: { color: "#047a9eff" },
             headerShown: false,
             tabBarActiveTintColor: "#047a9eff",
@@ -292,19 +289,22 @@ const App = () => {
             }}
           />
         </Tab.Navigator>
-      </>
+        <SupportBannerSheet />
+      </View>
     );
   }
 
   // conditional return
 
   return loading ? null : (
-    <NavigationContainer>
-      <SafeAreaView style={{ backgroundColor: "#FBFAFA" }}>
-        <Image source={logo} style={styles.header} />
-      </SafeAreaView>
-      <MyTabs />
-    </NavigationContainer>
+    <BottomSheetModalProvider>
+      <NavigationContainer>
+        <SafeAreaView style={{ backgroundColor: "#FBFAFA" }}>
+          <Image source={logo} style={styles.header} />
+        </SafeAreaView>
+        <MyTabs />
+      </NavigationContainer>
+    </BottomSheetModalProvider>
   );
 };
 const styles = StyleSheet.create({

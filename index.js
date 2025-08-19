@@ -1,5 +1,8 @@
+import "react-native-gesture-handler";
+import "react-native-reanimated";
 import { registerRootComponent } from "expo";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import App from "./App";
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
@@ -8,7 +11,9 @@ import App from "./App";
 function Root() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <App />
+      <SafeAreaProvider>
+        <App />
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }
