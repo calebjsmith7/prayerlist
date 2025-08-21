@@ -28,11 +28,13 @@
     "react-native-dotenv": "^3.4.11",
     "react-native-elements": "^3.4.3",
     "react-native-gesture-handler": "~2.24.0",
+    "react-native-iap": "^13.0.4",
     "react-native-ico-flags": "^6.4.1",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-uuid": "^2.0.3",
-    "react-native-woodpicker": "^0.3.17"
+    "react-native-woodpicker": "^0.3.17",
+    "expo-dev-client": "~5.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
